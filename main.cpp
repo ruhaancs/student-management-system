@@ -46,6 +46,31 @@ void displayStudents() {
     }
     file.close();
 }
+void searchStudent() {
+    int roll;
+    cout << "Enter Roll No to search: ";
+    cin >> roll;
+
+    ifstream file("students.txt");
+    Student s;
+    bool found = false;
+
+    while (file >> s.rollNo >> s.name >> s.marks) {
+        if (s.rollNo == roll) {
+            cout << "\nStudent Found:\n";
+            s.display();
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        cout << "Student not found.\n";
+    }
+
+    file.close();
+}
+
 
 int main() {
     int choice;
@@ -54,7 +79,8 @@ int main() {
         cout << "\n===== Student Management System =====\n";
         cout << "1. Add Student\n";
         cout << "2. Display Students\n";
-        cout << "3. Exit\n";
+        cout << "3. Search Student\n";
+        cout << "4. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -66,12 +92,15 @@ int main() {
                 displayStudents();
                 break;
             case 3:
+                searchStudent();
+                break;
+            case 4:
                 cout << "Exiting...\n";
                 break;
             default:
                 cout << "Invalid choice!\n";
         }
-    } while (choice != 3);
+    } while (choice != 4);
 
     return 0;
 }
