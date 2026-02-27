@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdio>
+#include <limits>
 
 using namespace std;
 
@@ -40,6 +41,12 @@ int main() {
             case 5: updateStudent(); break;
             case 6: cout << "Exiting program...\n"; break;
             default: cout << "Invalid choice!\n";
+        }
+         if (choice != 6) {
+            cout << "\nPress Enter to continue...";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.get();
+
         }
 
     } while (choice != 6);
